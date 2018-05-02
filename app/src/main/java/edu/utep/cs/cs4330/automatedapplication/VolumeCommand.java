@@ -6,8 +6,6 @@ import android.media.AudioManager;
 
 public class VolumeCommand extends Command {
 
-
-
     public Context context;
 
     public VolumeCommand(String options, Context context) {
