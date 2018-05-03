@@ -9,9 +9,9 @@ public class CoordinateCommand extends Command {
 
     @Override
     public void start() {
-        String[] options = this.options.split(" ");
-        String x = options[0];
-        String y = options[1];
+        String[] optionsarr = this.options.split("-");
+        String x = optionsarr[0];
+        String y = optionsarr[1];
         try {
             Process process = Runtime.getRuntime().exec("su");
             DataOutputStream os = new DataOutputStream(process.getOutputStream());

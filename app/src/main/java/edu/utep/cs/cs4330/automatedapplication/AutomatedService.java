@@ -45,6 +45,36 @@ public class AutomatedService extends IntentService {
                             switch (event){
                                 case "now":
                                     new Thread(()->{
+                                        try {
+                                            for (int i = 0; i < commands.length(); i++) {
+                                                JSONObject commandJSON = commands.getJSONObject(i);
+                                                String commandName = commandJSON.getString("name");
+                                                String commandOptions = commandJSON.getString("options");
+                                                System.out.println(commandName + " " + commandOptions);
+                                                switch (commandName){
+                                                    case "coordinate":
+                                                        new CoordinateCommand(commandOptions).start();
+                                                        break;
+                                                    case "text":
+                                                        new TextCommand(commandOptions).start();
+                                                        break;
+                                                    case "volume":
+                                                        new VolumeCommand(commandOptions, getApplicationContext()).start();
+                                                        break;
+                                                    case "open":
+                                                        new OpenCommand(commandOptions, getApplicationContext()).start();
+                                                        break;
+                                                    case "click_text":
+                                                        new ClickTextCommand(commandOptions).start();
+                                                        break;
+                                                    case "close":
+                                                        new CloseCommand(commandOptions, getApplicationContext()).start();
+                                                        break;
+                                                }
+                                            }
+                                        } catch (Exception e){
+                                            e.printStackTrace();
+                                        }
 
                                     }).start();
                                     break;
@@ -65,8 +95,10 @@ public class AutomatedService extends IntentService {
                                                         new TextCommand(commandOptions).start();
                                                         break;
                                                     case "volume":
+                                                        new VolumeCommand(commandOptions, getApplicationContext()).start();
                                                         break;
                                                     case "open":
+                                                        new OpenCommand(commandOptions, getApplicationContext()).start();
                                                         break;
                                                     case "click_text":
                                                         new ClickTextCommand(commandOptions).start();

@@ -38,7 +38,7 @@ public class ClickTextCommand extends Command {
     public void start() {
         try {
             Thread.sleep(2000);
-            new CoordinateCommand("1276 2369").start();
+            new CoordinateCommand("1276-2369").start();
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class ClickTextCommand extends Command {
                         int width = singlewords.getJSONObject(0).getInt("Width");
                         int randomX = ThreadLocalRandom.current().nextInt(left, (left + width) + 1);
                         int randomY = ThreadLocalRandom.current().nextInt(top, (top+height) + 1);
-                        new CoordinateCommand(randomX + " " + randomY).start();
+                        new CoordinateCommand(randomX + "-" + randomY).start();
                         return;
                     }
                 }
