@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 public class OpenCommand extends Command{
-
+// 172.19.152.20
     private Context context;
 
     public OpenCommand(String options, Context context){
@@ -18,7 +18,7 @@ public class OpenCommand extends Command{
         String text = options;
 
         try{
-            Intent intent = new Intent(options);
+            Intent intent = context.getPackageManager().getLaunchIntentForPackage(options);
             context.startActivity(intent);
         }
         catch (Exception e){
